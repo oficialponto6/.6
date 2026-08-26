@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ponto.6 | Tudo sobre GTA VI em VI segundos</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        void: '#030305',
+                        surface: '#0A0A0F',
+                        surfaceHover: '#13131A',
+                        neonMagenta: '#FF007F',
+                        neonCyan: '#00F0FF',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030305;
+            color: #F3F4F6;
+            overflow-x: hidden;
+        }
+        .font-syne {
+            font-family: 'Syne', sans-serif;
+        }
+        .glow-magenta {
+            box-shadow: 0 0 50px -15px rgba(255, 0, 127, 0.25);
+        }
+        .glow-cyan {
+            box-shadow: 0 0 40px -15px rgba(0, 240, 255, 0.2);
+        }
+        .glass-panel {
+            background: rgba(10, 10, 15, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body class="min-h-screen selection:bg-neonMagenta selection:text-white">
+
+    <!-- HEADER / NAVEGAÇÃO FIXA MODERNA -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-1 group">
+                <span class="font-syne text-2xl sm:text-3xl font-extrabold tracking-tight text-white group-hover:text-gray-200 transition-colors">Ponto</span>
+                <span class="font-syne text-2xl sm:text-3xl font-extrabold text-neonMagenta group-hover:scale-110 transition-transform inline-block">.6</span>
+            </a>
+            
+            <div class="flex items-center gap-4">
+                <span class="hidden sm:inline-flex items-center gap-2 text-xs font-medium px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-neonCyan glow-cyan">
+                    <span class="w-2 h-2 rounded-full bg-neonCyan animate-ping"></span>
+                    LEONIDA FEED: AO VIVO
+                </span>
+                <button class="bg-gradient-to-r from-neonMagenta to-purple-600 hover:from-neonMagenta/90 hover:to-purple-600/90 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all duration-300 shadow-lg shadow-neonMagenta/25 hover:scale-105">
+                    Inscrever-se
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+        
+        <!-- HERO SECTION -->
+        <section>
+            <a href="artigo.html" class="block relative rounded-3xl overflow-hidden glass-panel glow-magenta group cursor-pointer">
+                <div class="absolute inset-0 bg-gradient-to-t from-void via-void/50 to-transparent z-10"></div>
+                <div class="h-[420px] sm:h-[540px] w-full bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=80');"></div>
+                
+                <div class="absolute bottom-0 left-0 right-0 z-20 p-6 sm:p-12">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-neonMagenta/20 text-neonMagenta border border-neonMagenta/40 text-xs font-semibold px-3 py-1 rounded-lg uppercase tracking-wider backdrop-blur-md">
+                            Destaque Absoluto
+                        </span>
+                        <span class="text-xs text-gray-400">Atualizado há 5 minutos</span>
+                    </div>
+                    <h1 class="font-syne text-2xl sm:text-4xl lg:text-5xl font-bold text-white max-w-4xl leading-tight mb-4 group-hover:text-neonCyan transition-colors">
+                        Rockstar Atualiza Detalhes sobre a Física de Veículos e Inteligência Artificial em Leonida
+                    </h1>
+                    <p class="text-gray-300 text-sm sm:text-base max-w-2xl line-clamp-2">
+                        Novos documentos internos indicam um salto geracional massivo no comportamento de pedestres e tráfego urbano no aguardado GTA VI. Clique para ler a análise completa.
+                    </p>
+                </div>
+            </a>
+        </section>
+
+        <!-- ETAPA 1: FILTROS DE CATEGORIA INTERATIVOS -->
+        <section class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+            <button class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-neonMagenta text-white shadow-lg shadow-neonMagenta/20 transition-all whitespace-nowrap">Todas</button>
+            <button class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-surface border border-white/10 text-gray-300 hover:border-neonMagenta/50 hover:text-white transition-all whitespace-nowrap">Oficiais</button>
+            <button class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-surface border border-white/10 text-gray-300 hover:border-neonMagenta/50 hover:text-white transition-all whitespace-nowrap">Mapas & Mundo</button>
+            <button class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-surface border border-white/10 text-gray-300 hover:border-neonMagenta/50 hover:text-white transition-all whitespace-nowrap">Tecnologia</button>
+            <button class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-surface border border-white/10 text-gray-300 hover:border-neonMagenta/50 hover:text-white transition-all whitespace-nowrap">Vazamentos</button>
+        </section>
+
+        <!-- BENTO GRID DE NOTÍCIAS -->
+        <section>
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="font-syne text-xl sm:text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+                    <span class="w-1.5 h-6 bg-neonMagenta rounded-full"></span>
+                    Últimas em VI Segundos
+                </h2>
+                <span class="text-xs text-gray-400">Atualizado em tempo real</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <a href="artigo.html" class="glass-panel rounded-2xl overflow-hidden hover:border-neonMagenta/60 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group p-6 cursor-pointer">
+                    <div>
+                        <div class="text-xs font-semibold text-neonCyan mb-3">MAPAS & MUNDO</div>
+                        <h3 class="font-syne text-lg font-bold text-white group-hover:text-neonMagenta transition-colors mb-3">
+                            Análise Profunda: O Tamanho Real de Leonida Comparado com Los Santos
+                        </h3>
+                        <p class="text-gray-400 text-sm line-clamp-3">
+                            Com base nas coordenadas dos trailers e vazamentos validados, entenda a verdadeira proporção do mapa do novo jogo.
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between text-xs text-gray-500 border-t border-white/5 pt-4 mt-6">
+                        <span>Por Equipe Ponto.6</span>
+                        <span>Leitura: 2 min</span>
+                    </div>
+                </a>
+
+                <!-- Card 2 -->
+                <a href="artigo.html" class="glass-panel rounded-2xl overflow-hidden hover:border-neonMagenta/60 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group p-6 cursor-pointer">
+                    <div>
+                        <div class="text-xs font-semibold text-neonCyan mb-3">TECNOLOGIA & ENGINE</div>
+                        <h3 class="font-syne text-lg font-bold text-white group-hover:text-neonMagenta transition-colors mb-3">
+                            Como a RAGE Engine 9 Vai Empurrar os Consoles ao Extremo
+                        </h3>
+                        <p class="text-gray-400 text-sm line-clamp-3">
+                            Iluminação global em tempo real e simulação física de água nunca vista antes nos videogames modernos.
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between text-xs text-gray-500 border-t border-white/5 pt-4 mt-6">
+                        <span>Por Equipe Ponto.6</span>
+                        <span>Leitura: 3 min</span>
+                    </div>
+                </a>
+
+                <!-- Card 3 -->
+                <a href="artigo.html" class="glass-panel rounded-2xl overflow-hidden hover:border-neonMagenta/60 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group p-6 cursor-pointer">
+                    <div>
+                        <div class="text-xs font-semibold text-neonCyan mb-3">COMUNIDADE & HYPE</div>
+                        <h3 class="font-syne text-lg font-bold text-white group-hover:text-neonMagenta transition-colors mb-3">
+                            Teorias dos Fãs: O Que Esperar do Próximo Material Oficial da Rockstar
+                        </h3>
+                        <p class="text-gray-400 text-sm line-clamp-3">
+                            Comunidade analisa cada pixel do último comunicado em busca de pistas ocultas sobre a data de lançamento.
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between text-xs text-gray-500 border-t border-white/5 pt-4 mt-6">
+                        <span>Por Equipe Ponto.6</span>
+                        <span>Leitura: 1 min</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mt-20 border-t border-white/10 glass-panel py-8 text-center text-xs text-gray-500">
+        <p>&copy; 2026 Ponto.6 — O portal definitivo de GTA VI. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>

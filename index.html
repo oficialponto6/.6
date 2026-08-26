@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ponto.6 | Tudo sobre GTA VI em VI segundos</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -13,168 +12,290 @@
                 extend: {
                     colors: {
                         void: '#030305',
-                        surface: '#0A0A0F',
-                        surfaceHover: '#13131A',
+                        surface: 'rgba(10, 10, 15, 0.45)',
                         neonMagenta: '#FF007F',
+                        neonPurple: '#8B00FF',
                         neonCyan: '#00F0FF',
+                    },
+                    fontFamily: {
+                        syne: ['Syne', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Inter:wght@400;500;600&family=Bebas+Neue&family=Creepster&family=Black+Ops+One&family=Righteous&family=VT323&display=swap" rel="stylesheet">
+    
     <style>
         body {
             font-family: 'Inter', sans-serif;
             background-color: #030305;
-            color: #F3F4F6;
+            color: #D1D5DB;
             overflow-x: hidden;
+            position: relative;
         }
-        .font-syne {
-            font-family: 'Syne', sans-serif;
+        
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+            pointer-events: none;
         }
-        .glow-magenta {
-            box-shadow: 0 0 50px -15px rgba(255, 0, 127, 0.25);
-        }
-        .glow-cyan {
-            box-shadow: 0 0 40px -15px rgba(0, 240, 255, 0.2);
-        }
+
         .glass-panel {
-            background: rgba(10, 10, 15, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(10, 10, 15, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .glow-magenta-hover:hover {
+            box-shadow: 0 0 30px -10px rgba(255, 0, 127, 0.4);
+            border-color: rgba(255, 0, 127, 0.3);
+        }
+
+        .gta-filter {
+            filter: contrast(1.15) saturate(1.3);
+        }
+
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            background-color: #030305;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.4s ease-out, visibility 0.4s;
+        }
+        
+        .splash-text-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 120px; 
+            line-height: 1;
+        }
+
+        .cutout-effect {
+            display: inline-block;
+            transition: none;
+        }
+
+        @keyframes revealUi {
+            0% { opacity: 0; transform: translateY(15px) scale(0.99); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .animate-ui {
+            animation: revealUi 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        /* Animação para os cards quando filtrados */
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .card-filtered {
+            animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
     </style>
 </head>
 <body class="min-h-screen selection:bg-neonMagenta selection:text-white">
 
-    <!-- HEADER / NAVEGAÇÃO FIXA MODERNA -->
-    <header class="sticky top-0 z-50 glass-panel border-b border-white/10">
+    <!-- SPLASH SCREEN: COLAGEM ORGÂNICA (SEM FUNDO) -->
+    <div id="splash-screen">
+        <div class="splash-text-container text-6xl sm:text-8xl font-extrabold select-none tracking-tighter">
+            <span class="font-syne text-neonMagenta relative -top-1">.</span>
+            <span id="splash-number" class="cutout-effect text-neonMagenta">6</span>
+        </div>
+    </div>
+
+    <script>
+        // LÓGICA DA SPLASH SCREEN E COLAGEM
+        window.addEventListener('DOMContentLoaded', () => {
+            const numberEl = document.getElementById('splash-number');
+            const splashScreen = document.getElementById('splash-screen');
+            
+            const fonts = ["'VT323'", "'Bebas Neue'", "'Creepster'", "'Black Ops One'", "'Righteous'", "Arial", "'Times New Roman'"];
+            
+            // Apenas cores puras, SEM FUNDO
+            const textColors = ['#FF007F', '#8B00FF', '#00F0FF', '#FFFFFF', '#FF007F']; // Magenta, Roxo, Ciano, Branco
+            const rotations = ['-15deg', '10deg', '-5deg', '20deg', '-20deg', '8deg', '0deg'];
+            const clips = [
+                'polygon(0% 10%, 100% 0%, 90% 100%, 10% 90%)',
+                'polygon(5% 0%, 100% 5%, 95% 100%, 0% 95%)',
+                'none'
+            ];
+
+            let duration = 30; 
+            let totalTime = 0;
+            const maxDuration = 1000; 
+
+            function rollCollageAnim() {
+                if (totalTime < maxDuration) {
+                    const rFont = Math.floor(Math.random() * fonts.length);
+                    const rColor = Math.floor(Math.random() * textColors.length);
+                    const rRot = Math.floor(Math.random() * rotations.length);
+                    const rClip = Math.floor(Math.random() * clips.length);
+
+                    numberEl.style.fontFamily = fonts[rFont];
+                    numberEl.style.backgroundColor = 'transparent'; // Removido o fundo
+                    numberEl.style.color = textColors[rColor]; 
+                    numberEl.style.transform = `rotate(${rotations[rRot]}) scale(${1 + Math.random() * 0.4})`;
+                    numberEl.style.clipPath = clips[rClip];
+                    
+                    totalTime += duration;
+                    setTimeout(rollCollageAnim, duration);
+                } else {
+                    // ENCAIXE FINAL
+                    numberEl.style.fontFamily = "'Syne', sans-serif";
+                    numberEl.style.backgroundColor = 'transparent';
+                    numberEl.style.color = '#FF007F'; 
+                    numberEl.style.transform = 'rotate(0deg) scale(1)';
+                    numberEl.style.clipPath = 'none';
+                    numberEl.style.textShadow = "0 0 35px rgba(255,0,127,0.7)";
+                    
+                    setTimeout(() => {
+                        splashScreen.style.opacity = '0';
+                        splashScreen.style.visibility = 'hidden';
+                    }, 200);
+                }
+            }
+            rollCollageAnim();
+        });
+
+        // LÓGICA DO MOTOR DE FILTROS DAS ABAS
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const newsCards = document.querySelectorAll('.news-card');
+
+            // Classes padrão para ativo e inativo (Tailwind)
+            const activeClasses = ['bg-white', 'text-black'];
+            const inactiveClasses = ['bg-transparent', 'border', 'border-white/10', 'text-gray-400', 'hover:border-white/30', 'hover:text-white'];
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // 1. Resetar visual de todos os botões para inativo
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove(...activeClasses);
+                        btn.classList.add(...inactiveClasses);
+                    });
+
+                    // 2. Aplicar visual ativo no botão clicado
+                    button.classList.remove(...inactiveClasses);
+                    button.classList.add(...activeClasses);
+
+                    // 3. Filtrar os cards pelo data-category
+                    const filterValue = button.getAttribute('data-filter');
+
+                    newsCards.forEach(card => {
+                        // Remove animação anterior para recomeçar o efeito
+                        card.classList.remove('card-filtered');
+                        
+                        if (filterValue === 'all' || card.getAttribute('data-category').includes(filterValue)) {
+                            card.style.display = 'flex'; // Exibe o card (usamos flex em todos)
+                            
+                            // Gatilho para a animação reiniciar
+                            void card.offsetWidth; 
+                            card.classList.add('card-filtered');
+                        } else {
+                            card.style.display = 'none'; // Esconde o card
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-white/5 opacity-0 animate-ui" style="animation-delay: 1s;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-1 group">
-                <span class="font-syne text-2xl sm:text-3xl font-extrabold tracking-tight text-white group-hover:text-gray-200 transition-colors">Ponto</span>
-                <span class="font-syne text-2xl sm:text-3xl font-extrabold text-neonMagenta group-hover:scale-110 transition-transform inline-block">.6</span>
+                <span class="font-syne text-2xl sm:text-3xl font-extrabold tracking-tight text-white group-hover:text-gray-300 transition-colors">Ponto</span>
+                <span class="font-syne text-2xl sm:text-3xl font-extrabold text-neonMagenta">.6</span>
             </a>
             
             <div class="flex items-center gap-4">
-                <span class="hidden sm:inline-flex items-center gap-2 text-xs font-medium px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-neonCyan glow-cyan">
-                    <span class="w-2 h-2 rounded-full bg-neonCyan animate-ping"></span>
-                    LEONIDA FEED: AO VIVO
+                <span class="hidden sm:inline-flex items-center gap-2 text-xs font-medium px-4 py-1.5 rounded-full bg-black/40 border border-white/5 text-neonCyan">
+                    <span class="w-1.5 h-1.5 rounded-full bg-neonCyan animate-ping"></span>
+                    LEONIDA FEED
                 </span>
-                <button class="bg-gradient-to-r from-neonMagenta to-purple-600 hover:from-neonMagenta/90 hover:to-purple-600/90 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all duration-300 shadow-lg shadow-neonMagenta/25 hover:scale-105">
-                    Inscrever-se
-                </button>
             </div>
         </div>
     </header>
 
     <!-- CONTEÚDO PRINCIPAL -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
         
-        <!-- HERO SECTION -->
-        <section>
-            <a href="artigo.html" class="block relative rounded-3xl overflow-hidden glass-panel glow-magenta group cursor-pointer">
-                <div class="absolute inset-0 bg-gradient-to-t from-void via-void/50 to-transparent z-10"></div>
-                <div class="h-[420px] sm:h-[540px] w-full bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-105" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=80');"></div>
+        <!-- ABAS DE FILTROS (Agora com funcionalidade real via data-filter) -->
+        <section class="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none opacity-0 animate-ui" style="animation-delay: 1.1s;">
+            <button data-filter="all" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap bg-white text-black">Todas as Atualizações</button>
+            <button data-filter="oficiais" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap bg-transparent border border-white/10 text-gray-400 hover:border-white/30 hover:text-white">Comunicados Oficiais</button>
+            <button data-filter="mapa" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap bg-transparent border border-white/10 text-gray-400 hover:border-white/30 hover:text-white">Análise de Mapa</button>
+            <button data-filter="tecnologia" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap bg-transparent border border-white/10 text-gray-400 hover:border-white/30 hover:text-white">Tecnologia</button>
+        </section>
+
+        <!-- BENTO GRID (Cards agora possuem data-category para o filtro) -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 opacity-0 animate-ui" style="animation-delay: 1.2s;" id="news-grid">
+            
+            <!-- DESTAQUE PRINCIPAL (Categorias: Oficiais, Tecnologia) -->
+            <a href="artigo.html" data-category="oficiais tecnologia" class="news-card md:col-span-2 relative rounded-[2rem] overflow-hidden glass-panel glow-magenta-hover transition-all duration-500 group min-h-[400px] flex flex-col justify-end p-8">
+                <div class="absolute inset-0 bg-gradient-to-t from-void via-void/80 to-transparent z-10"></div>
+                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[1.5s] ease-out group-hover:scale-105 gta-filter" style="background-image: url('https://images.unsplash.com/photo-1544627065-2795cce20092?auto=format&fit=crop&w=1600&q=80');"></div>
                 
-                <div class="absolute bottom-0 left-0 right-0 z-20 p-6 sm:p-12">
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="bg-neonMagenta/20 text-neonMagenta border border-neonMagenta/40 text-xs font-semibold px-3 py-1 rounded-lg uppercase tracking-wider backdrop-blur-md">
-                            Destaque Absoluto
-                        </span>
-                        <span class="text-xs text-gray-400">Atualizado há 5 minutos</span>
-                    </div>
-                    <h1 class="font-syne text-2xl sm:text-4xl lg:text-5xl font-bold text-white max-w-4xl leading-tight mb-4 group-hover:text-neonCyan transition-colors">
-                        Rockstar Atualiza Detalhes sobre a Física de Veículos e Inteligência Artificial em Leonida
+                <div class="relative z-20">
+                    <span class="inline-block bg-neonMagenta/20 text-neonMagenta border border-neonMagenta/30 text-[10px] font-bold px-3 py-1 rounded-md uppercase tracking-widest mb-4 backdrop-blur-md">
+                        Comunicado Oficial
+                    </span>
+                    <h1 class="font-syne text-3xl sm:text-5xl font-bold text-white leading-[1.1] mb-3 group-hover:text-gray-200 transition-colors">
+                        Inteligência Artificial e Tráfego: O Salto Geracional em Leonida
                     </h1>
-                    <p class="text-gray-300 text-sm sm:text-base max-w-2xl line-clamp-2">
-                        Novos documentos internos indicam um salto geracional massivo no comportamento de pedestres e tráfego urbano no aguardado GTA VI. Clique para ler a análise completa.
+                    <p class="text-gray-400 text-sm max-w-xl">
+                        Documentos internos confirmam que a RAGE Engine 9 simulará rotinas autônomas para cada pedestre e veículo no mapa.
                     </p>
                 </div>
             </a>
-        </section>
 
-        <!-- ETAPA 1: FILTROS DE CATEGORIA INTERATIVOS -->
-        <section class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-            <button class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-neonMagenta text-white shadow-lg shadow-neonMagenta/20 transition-all whitespace-nowrap">Todas</button>
-            <button class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-surface border border-white/10 text-gray-300 hover:border-neonMagenta/50 hover:text-white transition-all whitespace-nowrap">Oficiais</button>
-            <button class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-surface border border-white/10 text-gray-300 hover:border-neonMagenta/50 hover:text-white transition-all whitespace-nowrap">Mapas & Mundo</button>
-            <button class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-surface border border-white/10 text-gray-300 hover:border-neonMagenta/50 hover:text-white transition-all whitespace-nowrap">Tecnologia</button>
-            <button class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-surface border border-white/10 text-gray-300 hover:border-neonMagenta/50 hover:text-white transition-all whitespace-nowrap">Vazamentos</button>
-        </section>
-
-        <!-- BENTO GRID DE NOTÍCIAS -->
-        <section>
-            <div class="flex items-center justify-between mb-6">
-                <h2 class="font-syne text-xl sm:text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-                    <span class="w-1.5 h-6 bg-neonMagenta rounded-full"></span>
-                    Últimas em VI Segundos
-                </h2>
-                <span class="text-xs text-gray-400">Atualizado em tempo real</span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Card 1 -->
-                <a href="artigo.html" class="glass-panel rounded-2xl overflow-hidden hover:border-neonMagenta/60 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group p-6 cursor-pointer">
+            <!-- CARD LATERAL (Categoria: Mapa) -->
+            <a href="artigo.html" data-category="mapa" class="news-card md:col-span-1 glass-panel rounded-[2rem] overflow-hidden hover:border-white/20 transition-all duration-300 group flex flex-col p-6 min-h-[400px]">
+                <div class="h-40 -mx-6 -mt-6 mb-6 bg-cover bg-center overflow-hidden">
+                    <div class="w-full h-full transition-transform duration-700 group-hover:scale-110 gta-filter" style="background-image: url('https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?auto=format&fit=crop&w=800&q=80');"></div>
+                </div>
+                <div class="flex-grow flex flex-col justify-between">
                     <div>
-                        <div class="text-xs font-semibold text-neonCyan mb-3">MAPAS & MUNDO</div>
-                        <h3 class="font-syne text-lg font-bold text-white group-hover:text-neonMagenta transition-colors mb-3">
-                            Análise Profunda: O Tamanho Real de Leonida Comparado com Los Santos
-                        </h3>
-                        <p class="text-gray-400 text-sm line-clamp-3">
-                            Com base nas coordenadas dos trailers e vazamentos validados, entenda a verdadeira proporção do mapa do novo jogo.
-                        </p>
+                        <span class="text-[10px] font-bold text-neonCyan tracking-widest mb-2 block uppercase">Teoria / Mapa</span>
+                        <h3 class="font-syne text-xl font-bold text-white mb-2">Escala Real: Comparando Los Santos e Vice City</h3>
+                        <p class="text-gray-500 text-xs line-clamp-3">Mapeamento comunitário revela dimensões assustadoras do novo estado baseado na Flórida.</p>
                     </div>
-                    <div class="flex items-center justify-between text-xs text-gray-500 border-t border-white/5 pt-4 mt-6">
-                        <span>Por Equipe Ponto.6</span>
-                        <span>Leitura: 2 min</span>
-                    </div>
-                </a>
+                    <span class="text-[10px] text-gray-600 font-medium uppercase mt-4">Leitura: 2 min</span>
+                </div>
+            </a>
 
-                <!-- Card 2 -->
-                <a href="artigo.html" class="glass-panel rounded-2xl overflow-hidden hover:border-neonMagenta/60 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group p-6 cursor-pointer">
-                    <div>
-                        <div class="text-xs font-semibold text-neonCyan mb-3">TECNOLOGIA & ENGINE</div>
-                        <h3 class="font-syne text-lg font-bold text-white group-hover:text-neonMagenta transition-colors mb-3">
-                            Como a RAGE Engine 9 Vai Empurrar os Consoles ao Extremo
-                        </h3>
-                        <p class="text-gray-400 text-sm line-clamp-3">
-                            Iluminação global em tempo real e simulação física de água nunca vista antes nos videogames modernos.
-                        </p>
-                    </div>
-                    <div class="flex items-center justify-between text-xs text-gray-500 border-t border-white/5 pt-4 mt-6">
-                        <span>Por Equipe Ponto.6</span>
-                        <span>Leitura: 3 min</span>
-                    </div>
-                </a>
+            <!-- CARD EXTRA 1 (Categoria: Tecnologia) -->
+            <a href="artigo.html" data-category="tecnologia" class="news-card md:col-span-1 glass-panel rounded-[2rem] overflow-hidden hover:border-white/20 transition-all duration-300 group flex flex-col p-6 min-h-[300px]">
+                <div class="flex-grow flex flex-col justify-center">
+                    <span class="text-[10px] font-bold text-neonMagenta tracking-widest mb-2 block uppercase">Engine</span>
+                    <h3 class="font-syne text-xl font-bold text-white mb-2">Ray Tracing Global Confirmado?</h3>
+                    <p class="text-gray-500 text-xs line-clamp-3">Reflexos no trailer levantam debates acalorados sobre as capacidades da nova engine nos consoles atuais.</p>
+                </div>
+            </a>
 
-                <!-- Card 3 -->
-                <a href="artigo.html" class="glass-panel rounded-2xl overflow-hidden hover:border-neonMagenta/60 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between group p-6 cursor-pointer">
-                    <div>
-                        <div class="text-xs font-semibold text-neonCyan mb-3">COMUNIDADE & HYPE</div>
-                        <h3 class="font-syne text-lg font-bold text-white group-hover:text-neonMagenta transition-colors mb-3">
-                            Teorias dos Fãs: O Que Esperar do Próximo Material Oficial da Rockstar
-                        </h3>
-                        <p class="text-gray-400 text-sm line-clamp-3">
-                            Comunidade analisa cada pixel do último comunicado em busca de pistas ocultas sobre a data de lançamento.
-                        </p>
-                    </div>
-                    <div class="flex items-center justify-between text-xs text-gray-500 border-t border-white/5 pt-4 mt-6">
-                        <span>Por Equipe Ponto.6</span>
-                        <span>Leitura: 1 min</span>
-                    </div>
-                </a>
-            </div>
+            <!-- CARD EXTRA 2 (Categoria: Oficiais) -->
+            <a href="artigo.html" data-category="oficiais" class="news-card md:col-span-2 glass-panel rounded-[2rem] overflow-hidden hover:border-white/20 transition-all duration-300 group flex flex-col justify-end p-6 min-h-[300px] relative">
+                <div class="absolute inset-0 bg-gradient-to-t from-void via-void/50 to-transparent z-10"></div>
+                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105 gta-filter" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="relative z-20">
+                    <span class="text-[10px] font-bold text-neonCyan tracking-widest mb-2 block uppercase">Oficial</span>
+                    <h3 class="font-syne text-2xl font-bold text-white mb-2">Data do Próximo Trailer: O Que Diz a Rockstar</h3>
+                    <p class="text-gray-400 text-xs max-w-md">Uma análise da janela de comunicações trimestrais da Take-Two.</p>
+                </div>
+            </a>
+
         </section>
-
     </main>
-
-    <!-- FOOTER -->
-    <footer class="mt-20 border-t border-white/10 glass-panel py-8 text-center text-xs text-gray-500">
-        <p>&copy; 2026 Ponto.6 — O portal definitivo de GTA VI. Todos os direitos reservados.</p>
-    </footer>
-
 </body>
 </html>

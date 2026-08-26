@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronunciamento Oficial: Vazamentos | Ponto.6</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { void: '#030305', surface: 'rgba(10, 10, 15, 0.45)', neonMagenta: '#FF007F', neonPurple: '#8B00FF', neonCyan: '#00F0FF' }, fontFamily: { syne: ['Syne', 'sans-serif'], inter: ['Inter', 'sans-serif'] } } } }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #030305; color: #D1D5DB; overflow-x: hidden; }
+        body::before { content: ""; position: fixed; inset: 0; z-index: -1; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E"); pointer-events: none; }
+        .glass-panel { background: rgba(10, 10, 15, 0.5); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.04); }
+        .article-body p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.125rem; color: #9CA3AF; }
+        .article-body strong { color: #E5E7EB; }
+    </style>
+</head>
+<body class="min-h-screen selection:bg-neonMagenta selection:text-white">
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm font-medium">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg> Voltar para o Feed
+            </a>
+            <a href="index.html" class="flex items-center gap-1 group">
+                <span class="font-syne text-xl font-extrabold tracking-tight text-white">Ponto</span><span class="font-syne text-xl font-extrabold text-neonMagenta">.6</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- CABEÇALHO COM AS DUAS IMAGENS SIMÉTRICAS -->
+    <header class="relative w-full py-24 px-6 glass-panel border-b border-white/10 flex flex-col items-center justify-center text-center mt-16">
+        <div class="absolute inset-0 bg-gradient-to-b from-neonMagenta/10 via-transparent to-void pointer-events-none"></div>
+
+        <div class="flex items-center justify-center gap-6 sm:gap-10 mb-8 relative z-10">
+            <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl glass-panel p-2 flex items-center justify-center border border-neonCyan/30 shadow-[0_0_20px_rgba(0,240,255,0.2)] bg-white">
+                <img src="imagens/cyberleek.png" alt="Cyberleek" class="w-full h-full object-contain">
+            </div>
+            
+            <span class="font-syne text-3xl sm:text-5xl font-extrabold text-neonMagenta italic tracking-wider drop-shadow-[0_0_15px_rgba(255,0,127,0.5)]">VS</span>
+            
+            <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl glass-panel p-2 flex items-center justify-center border border-amber-500/30 shadow-[0_0_20px_rgba(255,191,0,0.2)] bg-amber-500/10">
+                <img src="imagens/rockstar-logo.webp" alt="Rockstar Games" class="w-full h-full object-contain">
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto relative z-10">
+            <span class="inline-block bg-neonMagenta/20 text-neonMagenta border border-neonMagenta/30 text-[10px] font-bold px-3 py-1 rounded-md uppercase tracking-widest mb-4 backdrop-blur-md">
+                Pronunciamento Oficial
+            </span>
+            <h1 class="font-syne text-3xl sm:text-5xl font-extrabold text-white leading-tight mb-4 tracking-tight">
+                Declaração da Rockstar sobre os Vazamentos da Jogabilidade
+            </h1>
+            <p class="text-xs text-gray-500 uppercase tracking-wider">Leitura: VI Segundos</p>
+        </div>
+    </header>
+
+    <!-- CORPO DO ARTIGO COM O TEXTO OFICIAL ENVIADO -->
+    <main class="max-w-3xl mx-auto px-6 py-12">
+        <article class="article-body">
+            <p class="text-xl text-gray-300 font-medium mb-10 pb-10 border-b border-white/10">
+                "Sabemos que muitos de vocês estavam esperando ouvir de nós sobre os acontecimentos da última semana. Seria um eufemismo dizer que ter vídeos da jogabilidade de Grand Theft Auto VI vazados dessa forma foi devastador para nossa equipe."
+            </p>
+
+            <p>
+                Obviamente, não era assim que pretendíamos que vocês vissem o jogo depois de todo esse tempo. Pedimos desculpas por tudo estar levando tanto tempo, desde finalizar o jogo (quase pronto!) até compartilhar mais detalhes e mostrar a jogabilidade oficial, oferecendo à comunidade tudo o que ela quer saber.
+            </p>
+
+            <p>
+                Estamos muito animados para que todos vejam a apresentação estendida amanhã. Levou mais tempo do que gostaríamos para deixá-la pronta, mas, como em tudo o que fazemos, sabemos que precisamos superar as expectativas de vocês e estamos determinados a entregar um trabalho no nível que vocês esperam e merecem.
+            </p>
+
+            <p>
+                Embora seja lamentável que a experiência planejada possa ter sido impactada por alguns spoilers, esperamos que todos aguardem um pouco mais para vivenciar o jogo por si mesmos em <strong>19 de novembro</strong>.
+            </p>
+
+            <!-- CAIXA DE RESUMO "O PONTO" -->
+            <div class="mt-16 p-8 rounded-2xl bg-gradient-to-br from-neonMagenta/10 to-transparent border border-neonMagenta/30 relative overflow-hidden">
+                <div class="absolute -top-4 -right-4 w-24 h-24 bg-neonMagenta/20 blur-3xl rounded-full"></div>
+                
+                <h3 class="font-syne text-xl font-bold text-white mb-3 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-neonMagenta animate-pulse"></span>
+                    O Ponto Final
+                </h3>
+                <p class="text-gray-300 text-lg !mb-0">
+                    A nota oficial da Rockstar encerra as especulações da comunidade e confirma que, apesar do impacto dos vazamentos, o desenvolvimento entra em sua reta final visando o lançamento oficial em novembro.
+                </p>
+            </div>
+
+        </article>
+    </main>
+</body>
+</html>

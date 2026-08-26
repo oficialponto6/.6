@@ -105,7 +105,7 @@
 </head>
 <body class="min-h-screen selection:bg-neonMagenta selection:text-white">
 
-    <!-- SPLASH SCREEN: COLAGEM SEM FUNDO -->
+    <!-- SPLASH SCREEN -->
     <div id="splash-screen">
         <div class="splash-text-container text-6xl sm:text-8xl font-extrabold select-none tracking-tighter">
             <span class="font-syne text-neonMagenta relative -top-1">.</span>
@@ -163,7 +163,6 @@
             rollCollageAnim();
         });
 
-        // MOTOR DE FILTROS DAS ABAS
         document.addEventListener('DOMContentLoaded', () => {
             const filterButtons = document.querySelectorAll('.filter-btn');
             const newsCards = document.querySelectorAll('.news-card');
@@ -227,10 +226,10 @@
             <button data-filter="tecnologia" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap bg-transparent border border-white/10 text-gray-400 hover:border-white/30 hover:text-white">Tecnologia</button>
         </section>
 
-        <!-- BENTO GRID (Matriz Visual Refinada com Enquadramento) -->
+        <!-- BENTO GRID -->
         <section class="grid grid-cols-1 md:grid-cols-3 gap-6 opacity-0 animate-ui" style="animation-delay: 1.2s;" id="news-grid">
             
-            <!-- DESTAQUE PRINCIPAL -->
+            <!-- DESTAQUE PRINCIPAL: A VIDA NOTURNA (artigo.html) -->
             <a href="artigo.html" data-category="oficiais tecnologia" class="news-card md:col-span-2 relative rounded-[2rem] overflow-hidden glass-panel glow-magenta-hover transition-all duration-500 group min-h-[400px] flex flex-col justify-end p-8">
                 <div class="absolute inset-0 bg-gradient-to-t from-void via-void/80 to-transparent z-10"></div>
                 <div class="absolute inset-0 bg-cover bg-[position:75%_center] transition-transform duration-[1.5s] ease-out group-hover:scale-105 gta-filter" style="background-image: url('https://www.rockstargames.com/VI/_next/static/media/ULTIMATE_EDITION_SARAS_SALON_02.170lw.lgxdghm.jpg?akim=1&imdensity=1&imwidth=640');"></div>
@@ -252,7 +251,7 @@
                 </div>
             </a>
 
-            <!-- CARD LATERAL 1 (Leonida Keys - Mapa) -->
+            <!-- CARD LATERAL 1 (Leonida Keys - mapa.html) -->
             <a href="mapa.html" data-category="mapa" class="news-card md:col-span-1 glass-panel rounded-[2rem] overflow-hidden hover:border-white/20 transition-all duration-300 group flex flex-col p-6 min-h-[400px]">
                 <div class="h-40 -mx-6 -mt-6 mb-6 bg-cover bg-center overflow-hidden relative">
                     <div class="w-full h-full transition-transform duration-700 group-hover:scale-110 gta-filter" style="background-image: url('https://www.rockstargames.com/VI/_next/static/media/Leonida_Keys_03.0v_3~-9ceyixc.jpg');"></div>
@@ -268,7 +267,23 @@
                 </div>
             </a>
 
-            <!-- CARD EXTRA 1 (Squalo Boat - Tecnologia) -->
+            <!-- CARD DO PRONUNCIAMENTO OFICIAL DA ROCKSTAR (cyberleek.html) -->
+            <a href="cyberleek.html" data-category="oficiais" class="news-card md:col-span-1 glass-panel rounded-[2rem] overflow-hidden hover:border-white/20 transition-all duration-300 group flex flex-col p-6 min-h-[300px]">
+                <div class="h-32 -mx-6 -mt-6 mb-4 bg-cover bg-center overflow-hidden relative flex items-center justify-center bg-void/80">
+                    <img src="imagens/cyberleek.png" alt="Cyberleek" class="w-20 h-20 object-contain drop-shadow-[0_0_15px_rgba(0,240,255,0.4)]">
+                    <span class="absolute bottom-2 right-2 text-[9px] text-gray-300 bg-black/70 px-2 py-0.5 rounded backdrop-blur-md border border-white/10">Nota Oficial</span>
+                </div>
+                <div class="flex-grow flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] font-bold text-neonMagenta tracking-widest mb-2 block uppercase">Pronunciamento</span>
+                        <h3 class="font-syne text-lg font-bold text-white mb-2">Declaração sobre Vazamentos</h3>
+                        <p class="text-gray-500 text-xs line-clamp-2">"Ter vídeos da jogabilidade vazados dessa forma foi devastador para nossa equipe."</p>
+                    </div>
+                    <span class="text-[10px] text-gray-600 font-medium uppercase mt-4">Leitura: 1 min</span>
+                </div>
+            </a>
+
+            <!-- CARD DA LANCHA (lancha.html) -->
             <a href="lancha.html" data-category="tecnologia" class="news-card md:col-span-1 glass-panel rounded-[2rem] overflow-hidden hover:border-white/20 transition-all duration-300 group flex flex-col p-6 min-h-[300px]">
                 <div class="h-32 -mx-6 -mt-6 mb-4 bg-cover bg-center overflow-hidden relative">
                     <div class="w-full h-full transition-transform duration-700 group-hover:scale-110 gta-filter" style="background-image: url('https://www.rockstargames.com/VI/_next/static/media/ULTIMATE_EDITION_SQUALO_02.09qplkj.rjnk7.jpg?akim=1&imdensity=1&imwidth=640');"></div>
@@ -284,7 +299,7 @@
                 </div>
             </a>
 
-            <!-- CARD EXTRA 2 (Vice City Style - Cultura) -->
+            <!-- CARD DE CULTURA (cultura.html) -->
             <a href="cultura.html" data-category="oficiais" class="news-card md:col-span-2 glass-panel rounded-[2rem] overflow-hidden hover:border-white/20 transition-all duration-300 group flex flex-col justify-end p-6 min-h-[300px] relative">
                 <div class="absolute inset-0 bg-gradient-to-t from-void via-void/60 to-transparent z-10"></div>
                 <div class="absolute inset-0 bg-cover bg-[position:center_5%] transition-transform duration-700 group-hover:scale-105 gta-filter" style="background-image: url('https://www.rockstargames.com/VI/_next/static/media/ULTIMATE_EDITION_VICE_CITY_STYLE_04.1572kk.expq-n.jpg?akim=1&imdensity=1&imwidth=640');"></div>

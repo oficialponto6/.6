@@ -94,7 +94,6 @@
             animation: revealUi 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
         
-        /* Animação para os cards quando filtrados */
         @keyframes popIn {
             0% { opacity: 0; transform: scale(0.95); }
             100% { opacity: 1; transform: scale(1); }
@@ -106,7 +105,7 @@
 </head>
 <body class="min-h-screen selection:bg-neonMagenta selection:text-white">
 
-    <!-- SPLASH SCREEN: COLAGEM ORGÂNICA (SEM FUNDO) -->
+    <!-- SPLASH SCREEN: COLAGEM SEM FUNDO -->
     <div id="splash-screen">
         <div class="splash-text-container text-6xl sm:text-8xl font-extrabold select-none tracking-tighter">
             <span class="font-syne text-neonMagenta relative -top-1">.</span>
@@ -115,15 +114,12 @@
     </div>
 
     <script>
-        // LÓGICA DA SPLASH SCREEN E COLAGEM
         window.addEventListener('DOMContentLoaded', () => {
             const numberEl = document.getElementById('splash-number');
             const splashScreen = document.getElementById('splash-screen');
             
             const fonts = ["'VT323'", "'Bebas Neue'", "'Creepster'", "'Black Ops One'", "'Righteous'", "Arial", "'Times New Roman'"];
-            
-            // Apenas cores puras, SEM FUNDO
-            const textColors = ['#FF007F', '#8B00FF', '#00F0FF', '#FFFFFF', '#FF007F']; // Magenta, Roxo, Ciano, Branco
+            const textColors = ['#FF007F', '#8B00FF', '#00F0FF', '#FFFFFF', '#FF007F'];
             const rotations = ['-15deg', '10deg', '-5deg', '20deg', '-20deg', '8deg', '0deg'];
             const clips = [
                 'polygon(0% 10%, 100% 0%, 90% 100%, 10% 90%)',
@@ -143,7 +139,7 @@
                     const rClip = Math.floor(Math.random() * clips.length);
 
                     numberEl.style.fontFamily = fonts[rFont];
-                    numberEl.style.backgroundColor = 'transparent'; // Removido o fundo
+                    numberEl.style.backgroundColor = 'transparent';
                     numberEl.style.color = textColors[rColor]; 
                     numberEl.style.transform = `rotate(${rotations[rRot]}) scale(${1 + Math.random() * 0.4})`;
                     numberEl.style.clipPath = clips[rClip];
@@ -151,7 +147,6 @@
                     totalTime += duration;
                     setTimeout(rollCollageAnim, duration);
                 } else {
-                    // ENCAIXE FINAL
                     numberEl.style.fontFamily = "'Syne', sans-serif";
                     numberEl.style.backgroundColor = 'transparent';
                     numberEl.style.color = '#FF007F'; 
@@ -168,42 +163,35 @@
             rollCollageAnim();
         });
 
-        // LÓGICA DO MOTOR DE FILTROS DAS ABAS
+        // MOTOR DE FILTROS DAS ABAS
         document.addEventListener('DOMContentLoaded', () => {
             const filterButtons = document.querySelectorAll('.filter-btn');
             const newsCards = document.querySelectorAll('.news-card');
 
-            // Classes padrão para ativo e inativo (Tailwind)
             const activeClasses = ['bg-white', 'text-black'];
             const inactiveClasses = ['bg-transparent', 'border', 'border-white/10', 'text-gray-400', 'hover:border-white/30', 'hover:text-white'];
 
             filterButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    // 1. Resetar visual de todos os botões para inativo
                     filterButtons.forEach(btn => {
                         btn.classList.remove(...activeClasses);
                         btn.classList.add(...inactiveClasses);
                     });
 
-                    // 2. Aplicar visual ativo no botão clicado
                     button.classList.remove(...inactiveClasses);
                     button.classList.add(...activeClasses);
 
-                    // 3. Filtrar os cards pelo data-category
                     const filterValue = button.getAttribute('data-filter');
 
                     newsCards.forEach(card => {
-                        // Remove animação anterior para recomeçar o efeito
                         card.classList.remove('card-filtered');
                         
                         if (filterValue === 'all' || card.getAttribute('data-category').includes(filterValue)) {
-                            card.style.display = 'flex'; // Exibe o card (usamos flex em todos)
-                            
-                            // Gatilho para a animação reiniciar
+                            card.style.display = 'flex';
                             void card.offsetWidth; 
                             card.classList.add('card-filtered');
                         } else {
-                            card.style.display = 'none'; // Esconde o card
+                            card.style.display = 'none';
                         }
                     });
                 });
@@ -231,7 +219,7 @@
     <!-- CONTEÚDO PRINCIPAL -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
         
-        <!-- ABAS DE FILTROS (Agora com funcionalidade real via data-filter) -->
+        <!-- ABAS DE FILTROS -->
         <section class="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none opacity-0 animate-ui" style="animation-delay: 1.1s;">
             <button data-filter="all" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap bg-white text-black">Todas as Atualizações</button>
             <button data-filter="oficiais" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap bg-transparent border border-white/10 text-gray-400 hover:border-white/30 hover:text-white">Comunicados Oficiais</button>
@@ -239,14 +227,18 @@
             <button data-filter="tecnologia" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap bg-transparent border border-white/10 text-gray-400 hover:border-white/30 hover:text-white">Tecnologia</button>
         </section>
 
-        <!-- BENTO GRID (Cards agora possuem data-category para o filtro) -->
+        <!-- BENTO GRID -->
         <section class="grid grid-cols-1 md:grid-cols-3 gap-6 opacity-0 animate-ui" style="animation-delay: 1.2s;" id="news-grid">
             
-            <!-- DESTAQUE PRINCIPAL (Categorias: Oficiais, Tecnologia) -->
+            <!-- DESTAQUE PRINCIPAL (Sara's Salon / Estética Vice City) -->
             <a href="artigo.html" data-category="oficiais tecnologia" class="news-card md:col-span-2 relative rounded-[2rem] overflow-hidden glass-panel glow-magenta-hover transition-all duration-500 group min-h-[400px] flex flex-col justify-end p-8">
                 <div class="absolute inset-0 bg-gradient-to-t from-void via-void/80 to-transparent z-10"></div>
-                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[1.5s] ease-out group-hover:scale-105 gta-filter" style="background-image: url('https://images.unsplash.com/photo-1544627065-2795cce20092?auto=format&fit=crop&w=1600&q=80');"></div>
+                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[1.5s] ease-out group-hover:scale-105 gta-filter" style="background-image: url('https://www.rockstargames.com/VI/_next/static/media/ULTIMATE_EDITION_SARAS_SALON_02.170lw.lgxdghm.jpg?akim=1&imdensity=1&imwidth=640');"></div>
                 
+                <div class="absolute top-4 right-4 z-20">
+                    <span class="text-[10px] text-gray-400 bg-black/60 px-2.5 py-1 rounded-md backdrop-blur-md border border-white/10">Foto: Divulgação / Rockstar Games</span>
+                </div>
+
                 <div class="relative z-20">
                     <span class="inline-block bg-neonMagenta/20 text-neonMagenta border border-neonMagenta/30 text-[10px] font-bold px-3 py-1 rounded-md uppercase tracking-widest mb-4 backdrop-blur-md">
                         Comunicado Oficial
@@ -260,38 +252,50 @@
                 </div>
             </a>
 
-            <!-- CARD LATERAL (Categoria: Mapa) -->
+            <!-- CARD LATERAL 1 (Leonida Keys - Mapa) -->
             <a href="artigo.html" data-category="mapa" class="news-card md:col-span-1 glass-panel rounded-[2rem] overflow-hidden hover:border-white/20 transition-all duration-300 group flex flex-col p-6 min-h-[400px]">
-                <div class="h-40 -mx-6 -mt-6 mb-6 bg-cover bg-center overflow-hidden">
-                    <div class="w-full h-full transition-transform duration-700 group-hover:scale-110 gta-filter" style="background-image: url('https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="h-40 -mx-6 -mt-6 mb-6 bg-cover bg-center overflow-hidden relative">
+                    <div class="w-full h-full transition-transform duration-700 group-hover:scale-110 gta-filter" style="background-image: url('https://www.rockstargames.com/VI/_next/static/media/Leonida_Keys_01.0zgz7tveur6y8.jpg');"></div>
+                    <span class="absolute bottom-2 right-2 text-[9px] text-gray-300 bg-black/70 px-2 py-0.5 rounded backdrop-blur-md">Divulgação / Rockstar</span>
                 </div>
                 <div class="flex-grow flex flex-col justify-between">
                     <div>
                         <span class="text-[10px] font-bold text-neonCyan tracking-widest mb-2 block uppercase">Teoria / Mapa</span>
-                        <h3 class="font-syne text-xl font-bold text-white mb-2">Escala Real: Comparando Los Santos e Vice City</h3>
-                        <p class="text-gray-500 text-xs line-clamp-3">Mapeamento comunitário revela dimensões assustadoras do novo estado baseado na Flórida.</p>
+                        <h3 class="font-syne text-xl font-bold text-white mb-2">Escala Real: As Ilhas de Leonida Keys</h3>
+                        <p class="text-gray-500 text-xs line-clamp-3">Mapeamento comunitário revela dimensões e detalhes geográficos das ilhas ao sul do estado.</p>
                     </div>
                     <span class="text-[10px] text-gray-600 font-medium uppercase mt-4">Leitura: 2 min</span>
                 </div>
             </a>
 
-            <!-- CARD EXTRA 1 (Categoria: Tecnologia) -->
+            <!-- CARD EXTRA 1 (Squalo Boat - Tecnologia / Veículos) -->
             <a href="artigo.html" data-category="tecnologia" class="news-card md:col-span-1 glass-panel rounded-[2rem] overflow-hidden hover:border-white/20 transition-all duration-300 group flex flex-col p-6 min-h-[300px]">
-                <div class="flex-grow flex flex-col justify-center">
-                    <span class="text-[10px] font-bold text-neonMagenta tracking-widest mb-2 block uppercase">Engine</span>
-                    <h3 class="font-syne text-xl font-bold text-white mb-2">Ray Tracing Global Confirmado?</h3>
-                    <p class="text-gray-500 text-xs line-clamp-3">Reflexos no trailer levantam debates acalorados sobre as capacidades da nova engine nos consoles atuais.</p>
+                <div class="h-32 -mx-6 -mt-6 mb-4 bg-cover bg-center overflow-hidden relative">
+                    <div class="w-full h-full transition-transform duration-700 group-hover:scale-110 gta-filter" style="background-image: url('https://www.rockstargames.com/VI/_next/static/media/ULTIMATE_EDITION_SQUALO_02.09qplkj.rjnk7.jpg?akim=1&imdensity=1&imwidth=640');"></div>
+                    <span class="absolute bottom-2 right-2 text-[9px] text-gray-300 bg-black/70 px-2 py-0.5 rounded backdrop-blur-md">Divulgação / Rockstar</span>
+                </div>
+                <div class="flex-grow flex flex-col justify-between">
+                    <div>
+                        <span class="text-[10px] font-bold text-neonMagenta tracking-widest mb-2 block uppercase">Física & Água</span>
+                        <h3 class="font-syne text-lg font-bold text-white mb-2">Simulação Náutica e o Squalo</h3>
+                        <p class="text-gray-500 text-xs line-clamp-2">Comportamento de embarcações sob ondas dinâmicas na nova engine.</p>
+                    </div>
                 </div>
             </a>
 
-            <!-- CARD EXTRA 2 (Categoria: Oficiais) -->
+            <!-- CARD EXTRA 2 (Vice City Style - Oficiais / Estética) -->
             <a href="artigo.html" data-category="oficiais" class="news-card md:col-span-2 glass-panel rounded-[2rem] overflow-hidden hover:border-white/20 transition-all duration-300 group flex flex-col justify-end p-6 min-h-[300px] relative">
                 <div class="absolute inset-0 bg-gradient-to-t from-void via-void/50 to-transparent z-10"></div>
-                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105 gta-filter" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105 gta-filter" style="background-image: url('https://www.rockstargames.com/VI/_next/static/media/ULTIMATE_EDITION_VICE_CITY_STYLE_04.1572kk.expq-n.jpg?akim=1&imdensity=1&imwidth=640');"></div>
+                
+                <div class="absolute top-4 right-4 z-20">
+                    <span class="text-[10px] text-gray-400 bg-black/60 px-2.5 py-1 rounded-md backdrop-blur-md border border-white/10">Foto: Divulgação / Rockstar Games</span>
+                </div>
+
                 <div class="relative z-20">
-                    <span class="text-[10px] font-bold text-neonCyan tracking-widest mb-2 block uppercase">Oficial</span>
-                    <h3 class="font-syne text-2xl font-bold text-white mb-2">Data do Próximo Trailer: O Que Diz a Rockstar</h3>
-                    <p class="text-gray-400 text-xs max-w-md">Uma análise da janela de comunicações trimestrais da Take-Two.</p>
+                    <span class="text-[10px] font-bold text-neonCyan tracking-widest mb-2 block uppercase">Cultura & Estilo</span>
+                    <h3 class="font-syne text-2xl font-bold text-white mb-2">O Retorno Triunfal a Vice City</h3>
+                    <p class="text-gray-400 text-xs max-w-md">Como a Rockstar recriou a atmosfera icônica dos anos 80 repaginada para a era moderna.</p>
                 </div>
             </a>
 

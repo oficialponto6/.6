@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vídeos e Análises | Ponto.6</title>
+    <link rel="icon" type="image/png" href="imagens/logo.png">
+    <meta property="og:title" content="Ponto.6 | Vídeos e Análises de GTA VI">
+    <meta property="og:description" content="Assista aos trailers oficiais, análises técnicas e coberturas em vídeo de Grand Theft Auto VI.">
+    <meta property="og:image" content="https://oficialponto6.github.io/.6/imagens/logo.png">
+    <meta property="og:url" content="https://oficialponto6.github.io/.6/videos.html">
+    <meta property="og:type" content="website">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        void: '#030305',
+                        surface: 'rgba(10, 10, 15, 0.45)',
+                        neonMagenta: '#FF007F',
+                        neonPurple: '#8B00FF',
+                        neonCyan: '#00F0FF',
+                    },
+                    fontFamily: {
+                        syne: ['Syne', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030305;
+            color: #D1D5DB;
+            overflow-x: hidden;
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+        .glass-panel {
+            background: rgba(10, 10, 15, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .glow-magenta-hover:hover {
+            box-shadow: 0 0 30px -10px rgba(255, 0, 127, 0.4);
+            border-color: rgba(255, 0, 127, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen selection:bg-neonMagenta selection:text-white">
+
+    <!-- BARRA DE NAVEGAÇÃO -->
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm font-medium">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                Voltar para o Feed
+            </a>
+            
+            <a href="index.html" class="flex items-center gap-1 group">
+                <span class="font-syne text-xl font-extrabold tracking-tight text-white">Ponto</span>
+                <span class="font-syne text-xl font-extrabold text-neonMagenta">.6</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- CABEÇALHO DA PÁGINA -->
+    <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-8">
+        <span class="inline-block bg-neonMagenta/20 text-neonMagenta border border-neonMagenta/30 text-[10px] font-bold px-3 py-1 rounded-md uppercase tracking-widest mb-4 backdrop-blur-md">
+            Acervo Visual
+        </span>
+        <h1 class="font-syne text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-3">
+            Vídeos & Trailers Oficiais
+        </h1>
+        <p class="text-gray-400 text-sm max-w-xl">
+            Acompanhe os trailers de revelação, análises aprofundadas da engine e cobertura em vídeo de Grand Theft Auto VI.
+        </p>
+    </header>
+
+    <!-- GRADE DE VÍDEOS DO YOUTUBE -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- VÍDEO 1: Trailer 1 Oficial -->
+            <div class="glass-panel rounded-[2rem] overflow-hidden p-6 glow-magenta-hover transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black/60 mb-4 border border-white/10">
+                        <iframe class="w-full h-full absolute inset-0" src="https://www.youtube.com/embed/QdBZY2fkU-0" title="GTA VI Trailer 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <span class="text-[10px] font-bold text-neonMagenta tracking-widest mb-2 block uppercase">Trailer Oficial</span>
+                    <h3 class="font-syne text-xl font-bold text-white mb-2">Grand Theft Auto VI Trailer 1</h3>
+                    <p class="text-gray-400 text-xs line-clamp-2">O primeiro vislumbre oficial de Vice City e Leonida, revelando os protagonistas Jason e Lucia.</p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-gray-500">
+                    <span>Rockstar Games</span>
+                    <span class="text-neonCyan">90 Segundos</span>
+                </div>
+            </div>
+
+            <!-- VÍDEO 2: An Extended Look Teaser -->
+            <div class="glass-panel rounded-[2rem] overflow-hidden p-6 glow-magenta-hover transition-all duration-300 flex flex-col justify-between">
+                <div>
+                    <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black/60 mb-4 border border-white/10">
+                        <iframe class="w-full h-full absolute inset-0" src="https://www.youtube.com/embed/Y8icBVlwOAA" title="Grand Theft Auto VI: An Extended Look" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <span class="text-[10px] font-bold text-neonCyan tracking-widest mb-2 block uppercase">Apresentação Especial</span>
+                    <h3 class="font-syne text-xl font-bold text-white mb-2">Grand Theft Auto VI: An Extended Look</h3>
+                    <p class="text-gray-400 text-xs line-clamp-2">Teaser oficial da apresentação estendida focada em aprofundar os detalhes do novo título da Rockstar.</p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-gray-500">
+                    <span>Rockstar Games</span>
+                    <span class="text-neonCyan">Oficial</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-white/5 text-center text-xs text-gray-500">
+        <p>© 2026 Ponto.6. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
